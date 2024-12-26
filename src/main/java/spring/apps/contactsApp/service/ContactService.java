@@ -7,7 +7,7 @@ import spring.apps.contactsApp.model.Contact;
 public interface ContactService {
   Collection<Contact> findAll();
 
-  Optional<Contact> findById(Long id);
+  Contact findById(Long id);
 
   Contact save(Contact contact);
 

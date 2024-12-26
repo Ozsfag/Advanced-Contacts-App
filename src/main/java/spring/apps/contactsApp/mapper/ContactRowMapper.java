@@ -1,10 +1,9 @@
 package spring.apps.contactsApp.mapper;
 
-import org.springframework.jdbc.core.RowMapper;
-import spring.apps.contactsApp.model.Contact;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import org.springframework.jdbc.core.RowMapper;
+import spring.apps.contactsApp.model.Contact;
 
 public class ContactRowMapper implements RowMapper<Contact> {
   @Override

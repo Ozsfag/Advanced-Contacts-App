@@ -1,10 +1,12 @@
 package spring.apps.contactsApp.repository;
 
-import spring.apps.contactsApp.model.Contact;
-
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Repository;
+import spring.apps.contactsApp.model.Contact;
+@Repository
 public interface ContactRepository {
   Collection<Contact> findAll();
 
@@ -16,5 +18,5 @@ public interface ContactRepository {
 
   void delete(Contact contact);
 
-  void batchInsert(Collection<Contact> contacts);
+  void batchInsert(List<Contact> contacts);
 }
