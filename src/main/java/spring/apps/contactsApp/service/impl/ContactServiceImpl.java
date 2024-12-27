@@ -15,34 +15,35 @@ import java.util.Collection;
 @Slf4j
 @RequiredArgsConstructor
 public class ContactServiceImpl implements ContactService {
-    @Autowired private ContactRepository contactRepository;
-    @Override
-    public Collection<Contact> findAll() {
-        return contactRepository.findAll();
-    }
+  @Autowired private ContactRepository contactRepository;
 
-    @Override
-    public Contact findById(Long id) {
-        return contactRepository.findById(id).orElse(null);
-    }
+  @Override
+  public Collection<Contact> findAll() {
+    return contactRepository.findAll();
+  }
 
-    @Override
-    public Contact save(Contact contact) {
-        return contactRepository.save(contact);
-    }
+  @Override
+  public Contact findById(Long id) {
+    return contactRepository.findById(id).orElse(null);
+  }
 
-    @Override
-    public Contact update(Contact contact) {
-        return contactRepository.update(contact);
-    }
+  @Override
+  public Contact save(Contact contact) {
+    return contactRepository.save(contact);
+  }
 
-    @Override
-    public void delete(Contact contact) {
-        contactRepository.delete(contact);
-    }
+  @Override
+  public Contact update(Contact contact) {
+    return contactRepository.update(contact);
+  }
 
-    @Override
-    public void batchInsert(Collection<Contact> contacts) {
-        contactRepository.batchInsert(new ArrayList<>(contacts));
-    }
+  @Override
+  public void delete(Contact contact) {
+    contactRepository.delete(contact);
+  }
+
+  @Override
+  public void batchInsert(Collection<Contact> contacts) {
+    contactRepository.batchInsert(new ArrayList<>(contacts));
+  }
 }

@@ -1,7 +1,6 @@
 package spring.apps.contactsApp.service;
 
 import java.util.Collection;
-import java.util.Optional;
 import spring.apps.contactsApp.model.Contact;
 
 public interface ContactService {

@@ -9,37 +9,51 @@ import spring.apps.contactsApp.model.Contact;
 import spring.apps.contactsApp.service.ContactService;
 
 @Controller
-@RequestMapping("/contacts")
+@RequestMapping("/contact")
 @Slf4j
 @RequiredArgsConstructor
 public class ContactController {
-    private final ContactService contactService;
+  private final ContactService contactService;
 
-    @GetMapping
-    public String listContacts(Model model){
-        log.debug("Calling ContactsController -> listContacts");
-        model.addAttribute("contacts", contactService.findAll());
-        return "contacts/list";
-    }
+  @GetMapping("/")
+  public String index(Model model) {
+    log.debug("Calling ContactsController -> listContacts");
+    model.addAttribute("contacts", contactService.findAll());
+    return "index";
+  }
 
-    @GetMapping("/new")
-    public String newContact(Model model){
-        model.addAttribute("contact", new Contact());
-        return "contacts/form";
-    }
-    @GetMapping("/edit/{id}")
-    public String editContact(@PathVariable Long id, Model model){
-        Contact contact = contactService.findById(id);
-        model.addAttribute("contact", contact);
-        return "contacts/form";
-    }
+  @GetMapping("/create")
+  public String showCreateForm(Model model) {
+    model.addAttribute("contact", new Contact());
+    return "create";
+  }
 
-    @PostMapping("/save")
-    public String save(@ModelAttribute Contact contact){
-        if (contact.getId() != null){
-            contactService.save(contact);
-        }
-        contactService.update(contact);
-        return "redirect:/contacts";
+  @PostMapping("/create")
+  public String createContact(@ModelAttribute Contact contact) {
+    contactService.save(contact);
+    return "redirect:/";
+  }
+
+  @GetMapping("/edit/{id}")
+  public String showEditForm(@PathVariable Long id, Model model) {
+    Contact task = contactService.findById(id);
+    if (task != null) {
+      model.addAttribute("task", task);
+      return "edit";
     }
+    return "redirect:/";
+  }
+
+  @PostMapping("/edit")
+  public String editTask(@ModelAttribute Contact contact) {
+    Contact existedContact = contactService.findById(contact.getId());
+    if (existedContact != null) {
+      existedContact.setFirstName(contact.getFirstName());
+      existedContact.setLastName(contact.getLastName());
+      existedContact.setEmail(contact.getEmail());
+      existedContact.setPhone(contact.getPhone());
+      contactService.update(existedContact);
+    }
+    return "redirect:/";
+  }
 }

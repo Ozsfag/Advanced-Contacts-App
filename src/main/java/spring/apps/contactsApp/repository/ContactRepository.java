@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 import spring.apps.contactsApp.model.Contact;
+
 @Repository
 public interface ContactRepository {
   Collection<Contact> findAll();

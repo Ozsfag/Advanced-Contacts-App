@@ -5,3 +5,7 @@ spring:
     password: password
     hikari:
       schema: advanced_contacts_schema
+  logging:
+    level:
+      root: debug
+      spring.apps.contactsApp: debug
