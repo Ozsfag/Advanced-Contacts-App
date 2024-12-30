@@ -64,7 +64,7 @@ public class ContactRepositoryImpl implements ContactRepository {
   public Contact update(Contact contact) {
     log.debug("Calling ContactRepositoryImpl -> update. ID is {}.", contact.getId());
     String sql =
-        "UPDATE contacts c SET c.first_name = ?, c.last_name = ?, c.email = ?, c.phone = ? WHERE c.id = ?";
+        "UPDATE contacts SET first_name = ?, last_name = ?, email = ?, phone = ? WHERE id = ?";
     Optional<Contact> optionalContact = findById(contact.getId());
     if (optionalContact.isPresent()) {
       jdbcTemplate.update(

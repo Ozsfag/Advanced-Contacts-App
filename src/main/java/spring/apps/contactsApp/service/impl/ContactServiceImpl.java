@@ -15,7 +15,7 @@ import java.util.Collection;
 @Slf4j
 @RequiredArgsConstructor
 public class ContactServiceImpl implements ContactService {
-  @Autowired private ContactRepository contactRepository;
+  private final ContactRepository contactRepository;
 
   @Override
   public Collection<Contact> findAll() {

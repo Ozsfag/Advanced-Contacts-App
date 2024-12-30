@@ -15,13 +15,6 @@ import spring.apps.contactsApp.service.ContactService;
 public class ContactController {
   private final ContactService contactService;
 
-  @GetMapping("/")
-  public String index(Model model) {
-    log.debug("Calling ContactsController -> listContacts");
-    model.addAttribute("contacts", contactService.findAll());
-    return "index";
-  }
-
   @GetMapping("/create")
   public String showCreateForm(Model model) {
     model.addAttribute("contact", new Contact());
@@ -36,16 +29,16 @@ public class ContactController {
 
   @GetMapping("/edit/{id}")
   public String showEditForm(@PathVariable Long id, Model model) {
-    Contact task = contactService.findById(id);
-    if (task != null) {
-      model.addAttribute("task", task);
+    Contact contact = contactService.findById(id);
+    if (contact != null) {
+      model.addAttribute("contact", contact);
       return "edit";
     }
     return "redirect:/";
   }
 
   @PostMapping("/edit")
-  public String editTask(@ModelAttribute Contact contact) {
+  public String editContact(@ModelAttribute Contact contact) {
     Contact existedContact = contactService.findById(contact.getId());
     if (existedContact != null) {
       existedContact.setFirstName(contact.getFirstName());
@@ -53,6 +46,16 @@ public class ContactController {
       existedContact.setEmail(contact.getEmail());
       existedContact.setPhone(contact.getPhone());
       contactService.update(existedContact);
+    }
+    return "redirect:/";
+  }
+
+  @GetMapping("/delete/{id}")
+  public String deleteContact(@PathVariable Long id){
+    log.debug("Calling ContactController -> delete. ID is {}", id);
+    Contact contact = contactService.findById(id);
+    if (contact != null){
+      contactService.delete(contact);
     }
     return "redirect:/";
   }
