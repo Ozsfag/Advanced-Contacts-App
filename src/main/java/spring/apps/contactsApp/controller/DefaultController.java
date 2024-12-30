@@ -13,11 +13,12 @@ import spring.apps.contactsApp.service.ContactService;
 @Slf4j
 @RequiredArgsConstructor
 public class DefaultController {
-    private final ContactService contactService;
-    @GetMapping("/")
-    public String index(Model model) {
-        log.debug("Calling DefaultController -> listContacts");
-        model.addAttribute("contacts", contactService.findAll());
-        return "index";
-    }
+  private final ContactService contactService;
+
+  @GetMapping("/")
+  public String index(Model model) {
+    log.debug("Calling DefaultController -> listContacts");
+    model.addAttribute("contacts", contactService.findAll());
+    return "index";
+  }
 }

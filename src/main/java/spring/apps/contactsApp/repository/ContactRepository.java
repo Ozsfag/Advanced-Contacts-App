@@ -3,7 +3,6 @@ package spring.apps.contactsApp.repository;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.stereotype.Repository;
 import spring.apps.contactsApp.model.Contact;
 

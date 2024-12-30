@@ -51,10 +51,10 @@ public class ContactController {
   }
 
   @GetMapping("/delete/{id}")
-  public String deleteContact(@PathVariable Long id){
+  public String deleteContact(@PathVariable Long id) {
     log.debug("Calling ContactController -> delete. ID is {}", id);
     Contact contact = contactService.findById(id);
-    if (contact != null){
+    if (contact != null) {
       contactService.delete(contact);
     }
     return "redirect:/";
